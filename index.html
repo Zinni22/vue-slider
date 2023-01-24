@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carosello Vue</title>
+
+    <!-- Collegamento fontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">  
+
+    <!-- Collegamento CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <!-- MAIN -->
+    <main>
+
+        <div id="app">
+
+            <div class="general-container">
+
+                <div class="slides">
+
+                    <div class="single-slide">
+                        <img :src="slides[currentSlide].image" :alt="slides[currentSlide].title">
+                        <div class="text">
+                            <h3> {{slides[currentSlide].title}} </h3>
+                            <p> {{slides[currentSlide].text}} </p>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="thumbnails">
+
+                    <div class="single-thumbnail" 
+                        v-for="(slide, index) in slides"
+                        :class="{
+                            'active' : (currentSlide == index)
+                        }"
+                        @click="currentSlide = index"
+                        >
+                        <img :src="slide.image" :alt="slide.title">
+                    </div>
+                </div>
+
+                <div class="arrows">
+
+                    <div class="before" @click="prevArrow()">
+                        <i class="fa-solid fa-chevron-up"></i>
+                    </div>
+
+                    <div class="after" @click="nextArrow()">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- collegamento VUE -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Collegamento Javascript -->
+    <script type="text/javascript" src="js/scripts.js"></script>
+</body>
+</html>
